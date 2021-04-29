@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
   Route::patch('update-cart', 'User\ShoppingController@updateCart');
   route::get('checkout','User\ShoppingController@checkout')->name('checkout');
   route::POST('save-order','User\ShoppingController@order')->name('save-order');
-route::get('order-completed','User\ShoppingController@orderCompleted')->name('order.completed');
+  route::get('order-completed','User\ShoppingController@orderCompleted')->name('order.completed');
   Route::get('/','User\HomeController@index')->name('home');
   Route::get('products/{category_id?}','User\HomeController@showAllProducts')->name('getproducts');
   Route::get('product-details/{slug}','User\HomeController@details')->name('products.details');
@@ -57,15 +57,11 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function()
 Route::group(['prefix' => 'admin',  'middleware' => 'AdminGuard'], function()
 {
 
-  Route::get('customers','Admin\AdminController@getAllCustomers')->name('admin-customers');
+   Route::get('customers','Admin\AdminController@getAllCustomers')->name('admin-customers');
    Route::get('dashboard','Admin\AdminController@index')->name('admin-dashboard');
    Route::get('sliders','Admin\SliderController@index')->name('add-sliders');
-
    Route::get('delete/sliders/{id}','Admin\SliderController@delete')->name('delete.sliders');
-
-    Route::POST('sliders/store','Admin\SliderController@store')->name('store-slider');
-
-
+   Route::POST('sliders/store','Admin\SliderController@store')->name('store-slider');
    Route::get('logout','Admin\AdminLoginController@logout')->name('admin-logout');
    Route::get('category','Admin\CategoryController@index')->name('category');
    Route::post('add-category','Admin\CategoryController@store')->name('add-category');
@@ -101,13 +97,17 @@ Route::group(['prefix' => 'admin',  'middleware' => 'AdminGuard'], function()
   Route::POST('store-offers-products','Admin\OffersProductsController@store')->name('store.offers.products');
   Route::GET('remove-offer-product/{id}','Admin\OffersProductsController@destroy')->name('remove-offer-product');
   Route::GET('get-all-offers-products','Admin\OffersController@getAllOffersWithProducts')->name('getAllOffersWithProducts');
-
-
   Route::GET('order-details/{order_code}','Admin\AdminController@getOrderDetails')->name('order-details');
-
-      Route::GET('change-order-status/{status}/{order_code}','Admin\AdminController@changeOrderStatus')->name('change-order-status');
-
-
+  Route::GET('change-order-status/{status}/{order_code}','Admin\AdminController@changeOrderStatus')->name('change-order-status');
+  Route::GET('today-orders','Admin\AdminController@todayOrders')->name('today-orders');
+  Route::ANY('daily-collection','Admin\AdminController@dailyCollection')->name('dailyCollection');
+  Route::ANY('datewise-report','Admin\AdminController@datewiseReport')->name('datewiseReport');
+  Route::GET('admin-profile','Admin\AdminController@Profile')->name('adminProfile');
+  Route::POST('admin-change-password','Admin\AdminController@changePassword')->name('change.password');
+  Route::GET('site-settings','Common\siteConfigController@index')->name('site.settings');
+  Route::POST('update-site-settings/{id}','Common\siteConfigController@update')->name('update.site.config');
+  Route::GET('customize-template','Common\siteConfigController@customizeTemplate')->name('customize.template');
+  Route::POST('update-customize-template/{id}','Common\siteConfigController@updateTheme')->name('update.customize.template');
 });
 
 

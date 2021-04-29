@@ -7,17 +7,27 @@
                 <div class="col-lg-3 col-md-6 col-sm-12">
                 	<div class="widget">
                         <div class="footer_logo">
-                            <a href="#"><img src="{{url('Users_assets')}}/assets/images/logo_light.png" alt="logo"/></a>
+                            <a href="#"><img src="{{url('Users_assets')}}/assets/images/{{$siteConfig->logo}}" alt="logo"/></a>
                         </div>
                         <p>If you are going to use of Lorem Ipsum need to be sure there isn't hidden of text</p>
                     </div>
                     <div class="widget">
                         <ul class="social_icons social_white">
-                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
-                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
-                            <li><a href="#"><i class="ion-social-youtube-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                            @if((!empty($siteConfig->facebook)))
+                             <li><a href="{{$siteConfig->facebook}}"><i class="ion-social-facebook"></i></a></li>   
+                            @endif
+                             @if((!empty($siteConfig->twitter)))
+                            <li><a href="{{$siteConfig->twitter}}"><i class="ion-social-twitter"></i></a></li>
+                            @endif
+                             @if((!empty($siteConfig->skype)))
+                            <li><a href="{{$siteConfig->skype}}"><i class="ion-social-skype"></i></a></li>
+                            @endif
+                             @if((!empty($siteConfig->pinterest)))
+                            <li><a href="{{$siteConfig->pinterest}}"><i class="ion-social-youtube-outline"></i></a></li>
+                            @endif
+                             @if((!empty($siteConfig->instagram)))
+                            <li><a href="{{$siteConfig->instagram}}"><i class="ion-social-instagram-outline"></i></a></li>
+                            @endif
                         </ul>
                     </div>
         		</div>
@@ -62,15 +72,15 @@
                         <ul class="contact_info contact_info_light">
                             <li>
                                 <i class="ti-location-pin"></i>
-                                <p>123 Street, Old Trafford, New South London , UK</p>
+                                <p>{{ (!empty($siteConfig->address)) ? $siteConfig->address : 'NA' }}</p>
                             </li>
                             <li>
                                 <i class="ti-email"></i>
-                                <a href="https://bestwebcreator.com/cdn-cgi/l/email-protection#cba2a5ada48bb8a2bfaea5aaa6aee5a8a4a6"><span class="__cf_email__" data-cfemail="88e1e6eee7c8fbe1fcede6e9e5eda6ebe7e5">info@larastore.ml</span></a>
+                                <a href="">{{ (!empty($siteConfig->email)) ? $siteConfig->email : 'NA' }}</a>
                             </li>
                             <li>
                                 <i class="ti-mobile"></i>
-                                <p>+91 8866174302</p>
+                                <p>{{ (!empty($siteConfig->mobile)) ? $siteConfig->mobile : 'NA' }}</p>
                             </li>
                         </ul>
                     </div>
@@ -82,7 +92,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="mb-md-0 text-center text-md-left">© 2020 All Rights Reserved by Larastore.ml</p>
+                    <p class="mb-md-0 text-center text-md-left">{{ $siteConfig->footer_text }}</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="footer_payment text-center text-lg-right">

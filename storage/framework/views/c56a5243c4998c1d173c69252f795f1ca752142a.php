@@ -20,4 +20,7 @@
     <script src="<?php echo e(url('Eadmin/assets/js/pages/chart/chartjs/home-data.js')); ?>" ></script>
     <!-- summernote -->
     <script src="<?php echo e(url('Eadmin/assets/plugins/summernote/summernote.min.js')); ?>" ></script>
-    <script src="<?php echo e(url('Eadmin/assets/js/pages/summernote/summernote-data.js')); ?>" ></script><?php /**PATH C:\xampp\htdocs\larastore\resources\views/Admin/common/script.blade.php ENDPATH**/ ?>
+    <script src="<?php echo e(url('Eadmin/assets/js/pages/summernote/summernote-data.js')); ?>" ></script>
+    
+   <!-- Custom Validation  -->
+   <script src="<?php echo e(url('Eadmin/assets/js/adminformvalidation.js')); ?>" ></script><?php /**PATH C:\xampp\htdocs\larastore\resources\views/Admin/common/script.blade.php ENDPATH**/ ?>

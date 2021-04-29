@@ -6,6 +6,14 @@
     label{
         font-weight: bold;
     }
+     label.error {
+        color: red;
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+    }
+    input.error { border-left: 4px solid #f00; }
+
 </style>
 @endpush
 @section('main-section')
@@ -17,7 +25,7 @@
                             <div class="card card-box">
                                 
                                 <div class="card-body " id="bar-parent">
-                                    <form method="POST" action="{{ (isset($data->id) ? route('update-offers',$data->id) : route('store-offers') ) }}" enctype="multipart/form-data" > @csrf     
+                                    <form method="POST" id="adminOfferValidation" action="{{ (isset($data->id) ? route('update-offers',$data->id) : route('store-offers') ) }}" enctype="multipart/form-data" > @csrf     
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <div class="card-head">
@@ -34,7 +42,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                         <label for="simpleFormEmail">Offers Name</label>
-                                                        <input type="text" class="form-control" value="{{ (isset($data->offers_name) ?  $data->offers_name : '' ) }}" name="offers_name"  >
+                                                        <input type="text" class="form-control" value="{{ (isset($data->offers_name) ?  $data->offers_name : '' ) }}" id="offers_name" name="offers_name"  >
                                                         @if ($errors->has('offers_name'))
                                                         {{ $errors->first('offers_name') }}
                                                           @endif
@@ -42,7 +50,7 @@
                                                     
                                                     <div class="form-group">
                                                         <label for="simpleFormEmail">Start Date</label>
-                                                        <input type="date" class="form-control"   value="{{ (isset($data->start_date) ? $data->start_date  : '' ) }}" name="start_date"  >
+                                                        <input type="date" class="form-control"   value="{{ (isset($data->start_date) ? $data->start_date  : '' ) }}" id="start_date" name="start_date"  >
                                                         @if ($errors->has('start_date'))
                                                         {{ $errors->first('start_date') }}
                                                           @endif
@@ -51,7 +59,7 @@
                                                     
                                                     <div class="form-group">
                                                         <label for="simpleFormEmail">End Date</label>
-                                                        <input type="date" class="form-control"  name="end_date"  value="{{ (isset($data->end_date) ? $data->end_date  : '' ) }}"  >
+                                                        <input type="date" id="end_date" class="form-control"  name="end_date"  value="{{ (isset($data->end_date) ? $data->end_date  : '' ) }}"  >
                                                         @if ($errors->has('end_date'))
                                                         {{ $errors->first('end_date') }}
                                                           @endif

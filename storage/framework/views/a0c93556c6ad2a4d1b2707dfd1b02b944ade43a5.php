@@ -6,7 +6,17 @@
     label{
         font-weight: bold;
     }
+
+    label.error {
+        color: red;
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+    }
+    input.error { border-left: 4px solid #f00; }
+
 </style>
+
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('main-section'); ?>
 <div class="page-content-wrapper">
@@ -17,12 +27,12 @@
                             <div class="card card-box">
                                 
                                 <div class="card-body " id="bar-parent">
-                                    <form method="POST" action="<?php echo e(route('store-slider')); ?>" enctype="multipart/form-data" > <?php echo csrf_field(); ?>     
+                                    <form method="POST" action="<?php echo e(route('store-slider')); ?>" enctype="multipart/form-data" id="adminBannerValidation" > <?php echo csrf_field(); ?>     
                                         <div class="row">
-                                            <div class="col-lg-9">
+                                            <div class="col-lg-12">
                                                 <div class="card-head">
                                                         <header> Add Slider Images</header>
-                                                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+                                                         
                                          
                                                 </div>
 
@@ -33,13 +43,13 @@
                                         </div><br>
                                         <div class="row">
 
-                                            <div class="col-lg-9">
+                                            <div class="col-lg-6">
                                                
                                       
                                       
                                         <div class="form-group">
                                             <label for="simpleFormEmail">Slider  Image</label>
-                                            <input type="file" class="form-control" name="slider_image">
+                                            <input type="file" class="form-control" id="slider_image" name="slider_image">
                                                 <?php if($errors->has('slider_image')): ?>
                                                         <?php echo e($errors->first('slider_image')); ?>
 
@@ -47,7 +57,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="checkbox" name="slider_text" value="1" >&nbsp;
+                                            <input type="checkbox" id="slider_text" name="slider_text" value="1" >&nbsp;
                                             <label for="simpleFormEmail">Want to show slider content ?</label>
                                            
                                            
@@ -56,7 +66,7 @@
                                       
                                          <div class="form-group">
                                             <label for="simpleFormEmail">H2 Tag Content</label>
-                                            <input type="text" name="title_1" value="" class="form-control" name="base_price"  >
+                                            <input type="text" id="title_1" name="title_1"  value="" class="form-control"   >
                                                        <?php if($errors->has('title_1')): ?>
                                                         <?php echo e($errors->first('title_1')); ?>
 
@@ -65,9 +75,9 @@
 
                                          <div class="form-group">
                                             <label for="simpleFormEmail">H5 Tag Content</label>
-                                            <input type="text" name="title_2" value="" class="form-control" name="base_price"  >
+                                            <input type="text" id="title_2" name="title_2" id="" value="" class="form-control"   >
                                                        <?php if($errors->has('title_2')): ?>
-                                                        <?php echo e($errors->first('tittitle_2le_1')); ?>
+                                                        <?php echo e($errors->first('title_2')); ?>
 
                                                           <?php endif; ?> 
                                         </div>
@@ -77,7 +87,7 @@
 
                                          <div class="form-group">
                                             <label for="simpleFormEmail">Banner Redirect Link</label>
-                                            <input type="text" name="banner_link" value="" class="form-control" name="base_price"  >
+                                            <input type="text" id="banner_link" name="banner_link" value="" class="form-control"   >
                                                        <?php if($errors->has('banner_link')): ?>
                                                         <?php echo e($errors->first('banner_link')); ?>
 
@@ -86,15 +96,21 @@
 
                                          <div class="form-group">
                                             <label for="simpleFormEmail">Banner Position</label>
-                                            <input type="number" name="position" value="" class="form-control" name="base_price"  >
+                                            <input type="number" id="position" name="position" value="" class="form-control" >
                                                        <?php if($errors->has('position')): ?>
                                                         <?php echo e($errors->first('position')); ?>
 
                                                           <?php endif; ?> 
                                         </div>
 
+                                        <button type="submit" class="btn btn-primary" style="float: right;">Add Banner</button>
 
 
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                          <img src="https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?size=626&ext=jpg&ga=GA1.2.505090971.1614211200" width="100%">
                                         </div>
                                           
                                       

@@ -10,7 +10,7 @@
 
 
 	                        <li class="nav-item ">
-	                                    <a href="" class="nav-link ">
+	                                    <a href="<?php echo e(route('admin-dashboard')); ?>" class="nav-link ">
 	                                         <i class="material-icons">dashboard</i>
 	                                        <span class="title">Dashboard</span>
 	                                        <span class="selected"></span>
@@ -18,7 +18,7 @@
 	                                </li>
 
 	                                 <li class="nav-item start">
-	                            <a href="#" class="nav-link nav-toggle">
+	                            <a href="javascript:void();" class="nav-link nav-toggle">
 	                                <i class="material-icons">dashboard</i>
 	                                <span class="title">CMS</span>
                                 	<span class="selected"></span>
@@ -34,7 +34,7 @@
 
 
 	                                <li class="nav-item ">
-	                                    <a href="" class="nav-link ">
+	                                    <a href="<?php echo e(route('customize.template')); ?>" class="nav-link ">
 	                                        <span class="title">Customize Theme</span>
 	                                        <span class="selected"></span>
 	                                    </a>
@@ -100,7 +100,7 @@
 	                            <ul class="sub-menu">
 	                                
 	                                <li class="nav-item ">
-	                                    <a href="<?php echo e(route('admin-orders')); ?>" class="nav-link ">
+	                                    <a href="<?php echo e(route('today-orders')); ?>" class="nav-link ">
 	                                        <span class="title">Today's Orders</span>
 	                                        <span class="selected"></span>
 	                                    </a>
@@ -174,16 +174,36 @@
 
 
 	                        <li class="nav-item ">
-	                                    <a href="" class="nav-link ">
+	                                    <a href="" class="nav-link nav-toggle">
 	                                         <i class="material-icons">dashboard</i>
-	                                        <span class="title">Sales Report</span>
+	                                        <span class="title">Reports</span>
+	                                        <span class="selected"></span>
+	                                        <span class="arrow open"></span>
+	                                    </a>
+
+	                                    <ul class="sub-menu">
+	                                
+	                                <li class="nav-item ">
+	                                    <a href="<?php echo e(route('dailyCollection')); ?>" class="nav-link ">
+	                                        <span class="title">Daily Report</span>
+	                                        <span class="selected"></span>
+	                                    </a>
+	                                </li>
+	                            	<li class="nav-item ">
+	                                    <a href="<?php echo e(route('datewiseReport')); ?>" class="nav-link ">
+	                                        <span class="title">DateWise Report</span>
 	                                        <span class="selected"></span>
 	                                    </a>
 	                                </li>
 	                                
 	                                
+	                                
+	                            </ul>
+	                                </li>
+	                                
+	                                
 	                                    <li class="nav-item ">
-	                                    <a href="" class="nav-link ">
+	                                    <a href="<?php echo e(route('admin-customers')); ?>" class="nav-link ">
 	                                         <i class="material-icons">info</i>
 	                                        <span class="title">Customers</span>
 	                                        <span class="selected"></span>
@@ -191,7 +211,7 @@
 	                                </li>
 	                                
 	                                    <li class="nav-item ">
-	                                    <a href="" class="nav-link ">
+	                                    <a href="<?php echo e(route('site.settings')); ?>" class="nav-link ">
 	                                         <i class="material-icons">settings</i>
 	                                        <span class="title">Site Settings</span>
 	                                        <span class="selected"></span>
@@ -199,9 +219,9 @@
 	                                </li>
 	                                
 	                                <li class="nav-item ">
-	                                    <a href="" class="nav-link ">
+	                                    <a href="<?php echo e(route('adminProfile')); ?>" class="nav-link ">
 	                                         <i class="material-icons">account_circle</i>
-	                                        <span class="title">Admin Profile</span>
+	                                        <span class="title">Profile Setting</span>
 	                                        <span class="selected"></span>
 	                                    </a>
 	                                </li>

@@ -135,8 +135,6 @@ class ProductController extends Controller
     public function get_orders()
     {
         $order = Order::all();
-        
-        //dd($order);
         return view('Admin.show_orders',compact('order'));   
     }
 

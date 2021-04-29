@@ -6,6 +6,14 @@
     label{
         font-weight: bold;
     }
+        label.error {
+        color: red;
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+    }
+    input.error { border-left: 4px solid #f00; }
+
 </style>
 @endpush
 @section('main-section')
@@ -17,7 +25,7 @@
                             <div class="card card-box">
                                 
                                 <div class="card-body " id="bar-parent">
-                                    <form method="POST" action="{{ (isset($data->id) ? route('update-products',$data->id) : route('store-products') ) }}" enctype="multipart/form-data" > @csrf     
+                <form method="POST" @if(isset($data->id)) id="adminEditProductValidation" @else id="adminAddProductValidation" @endif   action="{{ (isset($data->id) ? route('update-products',$data->id) : route('store-products') ) }}" enctype="multipart/form-data" > @csrf     
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <div class="card-head">
@@ -34,7 +42,7 @@
                                             <div class="col-lg-9">
                                                 <div class="form-group">
                                                         <label for="simpleFormEmail">Product Name</label>
-                                                        <input type="text" class="form-control" value="{{old('name',$data->name)}}" name="name"  >
+                                                        <input type="text" id="name" class="form-control" value="{{old('name',$data->name)}}" name="name"  >
                                                         @if ($errors->has('name'))
                                                         {{ $errors->first('name') }}
                                                           @endif
@@ -49,7 +57,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="simpleFormEmail">change Main Image</label>
-                                            <input type="file" class="form-control" name="images">
+                                            <input type="file" class="form-control" id="images" name="images">
                                                 @if ($errors->has('images'))
                                                         {{ $errors->first('images') }}
                                                           @endif
@@ -76,7 +84,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="simpleFormEmail">change  Image 1</label>
-                                            <input type="file" class="form-control" name="images1">
+                                            <input type="file" class="form-control" id="images1" name="images1">
                                                 @if ($errors->has('images1'))
                                                         {{ $errors->first('images1') }}
                                                           @endif
@@ -85,7 +93,7 @@
                                         
                                          <div class="form-group">
                                             <label for="simpleFormEmail">Product Image1</label>
-                                            <input type="file" class="form-control" name="images1">
+                                            <input type="file" class="form-control" id="images1" name="images1">
                                                 @if ($errors->has('images1'))
                                                         {{ $errors->first('images1') }}
                                                           @endif
@@ -103,7 +111,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="simpleFormEmail">change Image 2</label>
-                                            <input type="file" class="form-control" name="images2">
+                                            <input type="file" class="form-control" id="images2" name="images2">
                                                 @if ($errors->has('images2'))
                                                         {{ $errors->first('images2') }}
                                                           @endif
@@ -114,7 +122,7 @@
                                                 
                                                 <div class="form-group">
                                             <label for="simpleFormEmail">Product Image2</label>
-                                            <input type="file" class="form-control" name="images2">
+                                            <input type="file" class="form-control" id="images2" name="images2">
                                                 @if ($errors->has('images2'))
                                                         {{ $errors->first('images2') }}
                                                           @endif
@@ -131,7 +139,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="simpleFormEmail">change Image 3</label>
-                                            <input type="file" class="form-control" name="images3">
+                                            <input type="file" class="form-control" id="images3" name="images3">
                                                 @if ($errors->has('images3'))
                                                         {{ $errors->first('images3') }}
                                                           @endif
@@ -141,7 +149,7 @@
                                                 
                                                 <div class="form-group">
                                             <label for="simpleFormEmail">Product Image3</label>
-                                            <input type="file" class="form-control" name="images3">
+                                            <input type="file" class="form-control" id="images3" name="images3">
                                                 @if ($errors->has('images3'))
                                                         {{ $errors->first('images3') }}
                                                           @endif
@@ -159,7 +167,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="simpleFormEmail">change Image 4</label>
-                                            <input type="file" class="form-control" name="images4">
+                                            <input type="file" class="form-control" id="images4" name="images4">
                                                 @if ($errors->has('images4'))
                                                         {{ $errors->first('images4') }}
                                                           @endif
@@ -169,7 +177,7 @@
                                                 
                                                 <div class="form-group">
                                             <label for="simpleFormEmail">Product Image4</label>
-                                            <input type="file" class="form-control" name="images4">
+                                            <input type="file" class="form-control" id="images4" name="images4">
                                                 @if ($errors->has('images4'))
                                                         {{ $errors->first('images4') }}
                                                           @endif
@@ -178,7 +186,7 @@
                                                 @endif
                                                             <div class="form-group">
                                             <label for="simpleFormEmail">Short Description</label>
-                                            <textarea name="Short_details" cols="125" rows="8">{{ (!empty($data->Short_details)) ? $data->Short_details : '' }}</textarea>
+                                            <textarea name="Short_details" id="Short_details" cols="125" rows="8">{{ (!empty($data->Short_details)) ? $data->Short_details : '' }}</textarea>
                                             @if ($errors->has('Short_details'))
                                                         {{ $errors->first('Short_details') }}
                                                           @endif 
@@ -186,7 +194,7 @@
                                                  <div class="form-group">
                                             <label for="simpleFormEmail">Long Description</label><br>
                                            
-                                             <textarea id="summernote" name="details">{{ (!empty($data->details)) ? $data->details : '' }}</textarea>
+                                             <textarea id="summernote"  name="details">{{ (!empty($data->details)) ? $data->details : '' }}</textarea>
                                            @if ($errors->has('details'))
                                                         {{ $errors->first('details') }}
                                                           @endif  
@@ -198,8 +206,8 @@
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                 <label>Select Category</label>
-                                                <select class="form-control" name="category_id">
-                                                <option><-- Category --></option>
+                                                <select class="form-control" id="category_id" name="category_id">
+                                                <option value=""> <-- Category --></option>
                                                 @foreach ($Categories as $Category)
                                                     <option @if($data->category_id == $Category->id ) selected  @endif value="{{ $Category->id }}">{{ ucfirst($Category->category_name) }}</option>
                                                 @endforeach
@@ -212,15 +220,23 @@
                                           
                                         <div class="form-group">
                                             <label for="simpleFormEmail">Base(MARKET) Price</label>
-                                            <input type="number" value="{{old('base_price',$data->base_price)}}" class="form-control" name="base_price"  >
+                                            <input type="number" id="base_price" value="{{old('base_price',$data->base_price)}}" class="form-control" name="base_price"  >
                                                        @if ($errors->has('base_price'))
                                                         {{ $errors->first('base_price') }}
+                                                          @endif 
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label for="simpleFormEmail">Discount Price</label>
+                                            <input type="number" id="discount_price" value="{{old('discount_price',$data->discount_price)}}" class="form-control" name="discount_price"  >
+                                                       @if ($errors->has('discount_price'))
+                                                        {{ $errors->first('discount_price') }}
                                                           @endif 
                                         </div>
                                         
                                          <div class="form-group">
                                             <label for="simpleFormEmail">CGST(%)</label>
-                                            <input type="number" value="{{old('CGST',$data->CGST)}}" class="form-control" name="CGST"  >
+                                            <input type="number" id="CGST" value="{{old('CGST',$data->CGST)}}" class="form-control" name="CGST"  >
                                                        @if ($errors->has('base_price'))
                                                         {{ $errors->first('base_price') }}
                                                           @endif 
@@ -228,20 +244,14 @@
                                         
                                          <div class="form-group">
                                             <label for="simpleFormEmail">SGST(%)</label>
-                                            <input type="number" value="{{old('SGST',$data->SGST)}}" class="form-control" name="SGST"  >
+                                            <input type="number" id="SGST" value="{{old('SGST',$data->SGST)}}" class="form-control" name="SGST"  >
                                                        @if ($errors->has('SGST'))
                                                         {{ $errors->first('SGST') }}
                                                           @endif 
                                         </div>
                                         
                                         
-                                        <div class="form-group">
-                                            <label for="simpleFormEmail">Discount Price</label>
-                                            <input type="number" value="{{old('discount_price',$data->discount_price)}}" class="form-control" name="discount_price"  >
-                                                       @if ($errors->has('discount_price'))
-                                                        {{ $errors->first('discount_price') }}
-                                                          @endif 
-                                        </div>
+                                       
                                         
                                         
                                             <div class="form-group">
@@ -282,7 +292,7 @@
                                         
                                           <div class="form-group">
                                             <label for="simpleFormEmail">Product Affiliate Link</label>
-                                            <input type="text" value="{{old('product_link',$data->product_link)}}" class="form-control" name="product_link"  >
+                                            <input type="text" id="product_link" value="{{old('product_link',$data->product_link)}}" class="form-control" name="product_link"  >
                                                        @if ($errors->has('product_link'))
                                                         {{ $errors->first('product_link') }}
                                                           @endif 
@@ -291,7 +301,7 @@
                                         
                                          <div class="form-group">
                                             <label for="simpleFormEmail">SKU</label>
-                                            <input type="text" value="{{old('sku',$data->sku)}}" class="form-control" name="sku"  >
+                                            <input type="text" id="sku" value="{{old('sku',$data->sku)}}" class="form-control" name="sku"  >
                                                        @if ($errors->has('sku'))
                                                         {{ $errors->first('sku') }}
                                                           @endif 

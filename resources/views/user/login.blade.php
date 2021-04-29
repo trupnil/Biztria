@@ -1,5 +1,14 @@
 @extends('user.master')
 @section('main-section')
+<style type="text/css">
+    label.error {
+        color: red;
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+    }
+    input.error { border-left: 4px solid #f00; }
+</style>
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_gray page-title-mini">
     <div class="container"><!-- STRART CONTAINER -->
@@ -39,16 +48,16 @@
     </div>
 @endif
                         </div>
-                        <form method="post" action="{{ route('user-authenticate') }}"  >
+                        <form method="post" id="userLoginForm" action="{{ route('user-authenticate') }}"  >
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <input type="text" required="" class="form-control" name="email" placeholder="Your Email">
+                                <input type="text" id="email"  class="form-control" name="email" placeholder="Your Email">
                                 @error('email')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input class="form-control" required="" type="password" name="password" placeholder="password">
+                                <input class="form-control" id="password"  type="password" name="password" placeholder="password">
                                 @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -100,5 +109,8 @@
 
 </div>
 <!-- END MAIN CONTENT -->
+
+
+
 @stop
 

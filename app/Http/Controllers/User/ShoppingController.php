@@ -20,6 +20,7 @@ use App\User;
 
 use Carbon\Carbon;
 
+
 class ShoppingController extends Controller
 {
 
@@ -195,7 +196,7 @@ class ShoppingController extends Controller
         $requestData['user_id'] = Auth::user()->id;
         $requestData['order_code'] = $od;
         $requestData['order_products'] = json_encode(session()->get('cart')); 
-        $requestData['order_date'] = $date->format('d-m-y');      
+        $requestData['order_date'] = $date->toDateString();      
         $order = new Order();
         $order->fill($requestData);
         if($order->save($requestData))
@@ -206,15 +207,14 @@ class ShoppingController extends Controller
        'alert-type' => 'success'
         );
             return redirect()->route('order.completed')->with($notification);
-            // return redirect()->back()
-            // ->with('success', 'order Place Successfully!!!!');
+            
         }
         else
         {
               $notification = array(
-       'message' => 'Something Went Wrong!',
-       'alert-type' => 'error'
-        );
+               'message' => 'Something Went Wrong!',
+               'alert-type' => 'error'
+                             );
 
         return redirect()->back()->with($notification);
         }
@@ -228,129 +228,129 @@ class ShoppingController extends Controller
         return view('user.order_completed');
     }
     
-    public function redeem(Request $request)
-    {
+    // public function redeem(Request $request)
+    // {
         
         
-        $userpoints = Auth::user()->points;
-        $id = Auth::user()->id;
+    //     $userpoints = Auth::user()->points;
+    //     $id = Auth::user()->id;
         
-        $points = $request->point;
+    //     $points = $request->point;
         
-        if($userpoints <  $points)
-        {
-            echo "false";
-        }
-        else
-        {
-            $val = "10";
+    //     if($userpoints <  $points)
+    //     {
+    //         echo "false";
+    //     }
+    //     else
+    //     {
+    //         $val = "10";
         
-            $discount = $points/$val;
+    //         $discount = $points/$val;
             
-            $dha = ($userpoints)-($points);
+    //         $dha = ($userpoints)-($points);
             
-            $user = User::find($id);
-            $user['points']=$dha;
-             $user->save();
+    //         $user = User::find($id);
+    //         $user['points']=$dha;
+    //          $user->save();
             
-           echo $discount;
+    //        echo $discount;
              
              
-        }
+    //     }
         
         
         
         
         
         
-    }
+    // }
 
-    public function paysuccess(Request $request)
-    {
+    // public function paysuccess(Request $request)
+    // {
             
-            if($request->totalAmount >= 1000)
-            {
-                $addPoints = User::where('id',Auth::user()->id)->update(['points'=>Auth::user()->points + 100]);
-            }
+    //         if($request->totalAmount >= 1000)
+    //         {
+    //             $addPoints = User::where('id',Auth::user()->id)->update(['points'=>Auth::user()->points + 100]);
+    //         }
         
-        $od = "OD" . rand('0000','9999');
-        // $cart = session()->get('cart');
-        // foreach($cart as $iteam)
-        // {
-        // dd($iteam[0]['id']);
-        $order_data = ['user_id' => $request->user_id, 'product_id' => $request->product_id, 'order_name' => $request->name, 'order_email' => $request->email, 'order_phone' => $request->phone, 'order_address' => $request->address, 'order_zip' => $request->zip, 'city' => $request->city, 'order_transaction' => $request->razorpay_payment_id, 'order_notes' => $request->notes, 'price' => $request->totalAmount, 'payment' => $request->payment, 'payment_status' => "success", 'order_code' => $od, 'status' => "pending",
+    //     $od = "OD" . rand('0000','9999');
+    //     // $cart = session()->get('cart');
+    //     // foreach($cart as $iteam)
+    //     // {
+    //     // dd($iteam[0]['id']);
+    //     $order_data = ['user_id' => $request->user_id, 'product_id' => $request->product_id, 'order_name' => $request->name, 'order_email' => $request->email, 'order_phone' => $request->phone, 'order_address' => $request->address, 'order_zip' => $request->zip, 'city' => $request->city, 'order_transaction' => $request->razorpay_payment_id, 'order_notes' => $request->notes, 'price' => $request->totalAmount, 'payment' => $request->payment, 'payment_status' => "success", 'order_code' => $od, 'status' => "pending",
 
-        ];
+    //     ];
 
-        $im = new Order();
-        $im->fill($order_data);
-        $im->save($order_data);
+    //     $im = new Order();
+    //     $im->fill($order_data);
+    //     $im->save($order_data);
         
-        if ($im->save($order_data))
-        {
-            if ($request->product_id)
-            {
-                // $cart = session()->get('cart');
-                // if(isset($cart[$request->product_id]))
-                // {
-                //     unset($cart[$request->product_id]);
-                //     session()->put('cart', $cart);
-                // }
-                session::forget('cart');
-            }
+    //     if ($im->save($order_data))
+    //     {
+    //         if ($request->product_id)
+    //         {
+    //             // $cart = session()->get('cart');
+    //             // if(isset($cart[$request->product_id]))
+    //             // {
+    //             //     unset($cart[$request->product_id]);
+    //             //     session()->put('cart', $cart);
+    //             // }
+    //             session::forget('cart');
+    //         }
             
                 
-        }
+    //     }
         
-                $to_email =$request->email;
+    //             $to_email =$request->email;
                 
-                $admin = 'noreply@nutriann.com';
-                $name="nutriann";
+    //             $admin = 'noreply@nutriann.com';
+    //             $name="nutriann";
                 
-                $data = array('name'=>$request->name,"amount"=>$request->totalAmount,"payment_id"=>$request->razorpay_payment_id,"order_code"=>$od,"msg"=>"Thanks for shopping with us");
-                Mail::send(['html'=>'email.payment_mail'],$data, function($message1) use ($name, $to_email) {
-                $message1->to($to_email, $name)
-                        ->subject('Congratulation');
-                $message1->from('noreply@nutriann.com','nutriann');
-                });
+    //             $data = array('name'=>$request->name,"amount"=>$request->totalAmount,"payment_id"=>$request->razorpay_payment_id,"order_code"=>$od,"msg"=>"Thanks for shopping with us");
+    //             Mail::send(['html'=>'email.payment_mail'],$data, function($message1) use ($name, $to_email) {
+    //             $message1->to($to_email, $name)
+    //                     ->subject('Congratulation');
+    //             $message1->from('noreply@nutriann.com','nutriann');
+    //             });
                 
-                 Mail::send(['html'=>'email.admin_mail'],$data, function($message1) use ($name, $admin) {
-                $message1->to($admin, $name)
-                        ->subject('New Order');
-                $message1->from('noreply@nutriann.com','nutriann');
-                });
-        // }
-        $arr = array(
-            'msg' => 'Payment successfully credited',
-            'status' => true
-        );
-        return Response()->json($arr);
+    //              Mail::send(['html'=>'email.admin_mail'],$data, function($message1) use ($name, $admin) {
+    //             $message1->to($admin, $name)
+    //                     ->subject('New Order');
+    //             $message1->from('noreply@nutriann.com','nutriann');
+    //             });
+    //     // }
+    //     $arr = array(
+    //         'msg' => 'Payment successfully credited',
+    //         'status' => true
+    //     );
+    //     return Response()->json($arr);
 
-    }
+    // }
 
-    public function payfail(Request $request)
-    {
-        $od = "OD" . rand('0000','9999');
+    // public function payfail(Request $request)
+    // {
+    //     $od = "OD" . rand('0000','9999');
 
-        $order_data = ['user_id' => $request->user_id, 'payment_id' => $request->razorpay_payment_id, 'ship_name' => $request->name, 'price' => $request->totalAmount, 'mobile_number' => $request->mobile_number, 'order_code' => $od, 'status' => "fail",
+    //     $order_data = ['user_id' => $request->user_id, 'payment_id' => $request->razorpay_payment_id, 'ship_name' => $request->name, 'price' => $request->totalAmount, 'mobile_number' => $request->mobile_number, 'order_code' => $od, 'status' => "fail",
 
-        ];
-        $im = new Order();
-        $im->fill($data);
-        $im->save($data);
+    //     ];
+    //     $im = new Order();
+    //     $im->fill($data);
+    //     $im->save($data);
 
-        $arr = array(
-            'msg' => 'Payment failed',
-            'status' => false
-        );
-        return Response()->json($arr);
-    }
+    //     $arr = array(
+    //         'msg' => 'Payment failed',
+    //         'status' => false
+    //     );
+    //     return Response()->json($arr);
+    // }
 
-    public function thankYou()
-    {
-        //echo"this is razor pay success page ";
-        return view('user.thankyou');
-    }
+    // public function thankYou()
+    // {
+    //     //echo"this is razor pay success page ";
+    //     return view('user.thankyou');
+    // }
     
     public function news_letter(Request $request)
     {

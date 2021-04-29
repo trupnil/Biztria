@@ -46,6 +46,7 @@
    <?php echo $__env->make('Admin.common.script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
    <?php echo $__env->yieldPushContent('scripts'); ?>
     <!-- end js include path -->
+
   </body>
 
 </html><?php /**PATH C:\xampp\htdocs\larastore\resources\views/Admin/master.blade.php ENDPATH**/ ?>

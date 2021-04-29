@@ -1,5 +1,5 @@
 <!-- Favicon Icon -->
-<link rel="shortcut icon" type="image/x-icon" href="{{url('Users_assets/assets/images/favicon.png')}}">
+<link rel="shortcut icon" type="image/x-icon" href="{{url('Users_assets/assets/images/favicon-32x32.png')}}">
 <!-- Animation CSS -->
 
 
@@ -31,4 +31,8 @@
 <link rel="stylesheet" href="{{url('Users_assets/assets/css/responsive.css')}}">
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
+<style type="text/css">
+	{{$siteConfig->additional_css}}
+</style>
 

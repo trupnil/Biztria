@@ -1,5 +1,14 @@
 
 <?php $__env->startSection('main-section'); ?>
+<style type="text/css">
+    label.error {
+        color: red;
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+    }
+    input.error { border-left: 4px solid #f00; }
+</style>
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_gray page-title-mini">
     <div class="container"><!-- STRART CONTAINER -->
@@ -40,11 +49,11 @@
     </div>
 <?php endif; ?>
                         </div>
-                        <form method="post" action="<?php echo e(route('user-authenticate')); ?>"  >
+                        <form method="post" id="userLoginForm" action="<?php echo e(route('user-authenticate')); ?>"  >
                             <?php echo e(csrf_field()); ?>
 
                             <div class="form-group">
-                                <input type="text" required="" class="form-control" name="email" placeholder="Your Email">
+                                <input type="text" id="email"  class="form-control" name="email" placeholder="Your Email">
                                 <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -57,7 +66,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" required="" type="password" name="password" placeholder="password">
+                                <input class="form-control" id="password"  type="password" name="password" placeholder="password">
                                 <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -116,6 +125,9 @@ unset($__errorArgs, $__bag); ?>
 
 </div>
 <!-- END MAIN CONTENT -->
+
+
+
 <?php $__env->stopSection(); ?>
 
 

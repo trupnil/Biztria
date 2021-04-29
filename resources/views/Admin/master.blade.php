@@ -46,6 +46,7 @@
    @include('Admin.common.script')
    @stack('scripts')
     <!-- end js include path -->
+
   </body>
 
 </html>

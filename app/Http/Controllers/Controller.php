@@ -8,13 +8,18 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Admin\Category;
 use View;
+use App\Admin\SiteConfig;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct()
   {
     $headerCategories = Category::where('status','1')->orderBy('id', 'DESC')->get();
+    $siteConfig = SiteConfig::first();
+    //dd($siteConfig);
     View::share('headerCategories', $headerCategories);
+    View::share('siteConfig', $siteConfig);
   }
    
 }

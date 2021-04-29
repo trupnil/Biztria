@@ -1,6 +1,6 @@
  <div class="page-footer">
-            <div class="page-footer-inner"> 2020-21 &copy; larastore.ml
-            <a href="javascript:void(0);" target="_top" class="makerCss">www.larastore.ml</a>
+            <div class="page-footer-inner"> 2020-21 &copy; Biztria
+            <a href="javascript:void(0);" target="_top" class="makerCss">www.biztria.com</a>
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>

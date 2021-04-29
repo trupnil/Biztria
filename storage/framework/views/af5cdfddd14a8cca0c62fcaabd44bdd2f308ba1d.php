@@ -29,7 +29,7 @@
         <div class="toggle"><i class="fa fa-user-plus"></i>
         </div>
         <div class="form formLogin">
-            <img src = "<?php echo e(url('Common/logo.jpeg')); ?>" style="width:100%;">
+            <img src = "<?php echo e(url('Common/biztria-logo.jpg')); ?>" style="width:100%;">
             <form method="POST" action="<?php echo e(route('adminlogin')); ?>">
             <?php echo csrf_field(); ?>
                 <input type="email" name="email" placeholder="Enter Email" />

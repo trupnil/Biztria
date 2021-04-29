@@ -31,5 +31,14 @@
 <script src="<?php echo e(url('Users_assets')); ?>/assets/js/scripts.js"></script>
 <!--add-to-cart js -->
 <script src="<?php echo e(url('Users_assets')); ?>/assets/js/add-to-cart.js"></script>
+<!-- This is For toastr js for notification online CDN  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<!-- This is For jquery Validation online CDN  -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="<?php echo e(url('Users_assets')); ?>/assets/js/uservalidation.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script><?php /**PATH C:\xampp\htdocs\larastore\resources\views/user/common/script.blade.php ENDPATH**/ ?>
+<!-- This is Script Adjust by admin side additional js it should be a always last in the list  -->
+<script>
+	<?php echo e($siteConfig->additional_js); ?>
+
+</script><?php /**PATH C:\xampp\htdocs\larastore\resources\views/user/common/script.blade.php ENDPATH**/ ?>

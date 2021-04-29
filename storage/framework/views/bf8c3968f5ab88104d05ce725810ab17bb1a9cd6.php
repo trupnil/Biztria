@@ -6,15 +6,19 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                 	<div class="d-flex align-items-center justify-content-center justify-content-md-start">
+
+                         <ul class="contact_detail text-center text-lg-left">
+                            <li><i class="ti-mobile"></i><span><?php echo e($siteConfig->store_name); ?></span></li>
+                        </ul>
                         <div class="lng_dropdown mr-2">
                             <select name="countries" class="custome_select">
-                                <option value='en' data-image="<?php echo e(url('Users_assets')); ?>/assets/images/eng.png" data-title="English">Vadodara</option>
+                                <option value='en' data-image="<?php echo e(url('Users_assets')); ?>/assets/images/eng.png" data-title="English"><?php echo e($siteConfig->location); ?></option>
                                
                             </select>
                         </div>
                        
                         <ul class="contact_detail text-center text-lg-left">
-                            <li><i class="ti-mobile"></i><span>+91 8866174302</span></li>
+                            <li><i class="ti-mobile"></i><span><?php echo e($siteConfig->mobile); ?></span></li>
                         </ul>
                     </div>
                 </div>
@@ -40,8 +44,8 @@
     	<div class="container">
             <nav class="navbar navbar-expand-lg"> 
                 <a class="navbar-brand" href="index.html">
-                    <img class="logo_light" src="<?php echo e(url('Users_assets')); ?>/assets/images/logo_light.png" alt="logo" />
-                    <img class="logo_dark" src="<?php echo e(url('Users_assets')); ?>/assets/images/logo_dark.png" alt="logo" />
+                    <img class="logo_light" src="<?php echo e(url('Users_assets')); ?>/assets/images/<?php echo e($siteConfig->logo); ?>" alt="logo" />
+                    <img class="logo_dark" src="<?php echo e(url('Users_assets')); ?>/assets/images/<?php echo e($siteConfig->logo); ?>" alt="logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false"> 
                     <span class="ion-android-menu"></span>

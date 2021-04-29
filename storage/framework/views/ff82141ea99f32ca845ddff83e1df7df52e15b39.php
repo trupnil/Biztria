@@ -1,6 +1,14 @@
 
 <?php $__env->startSection('main-section'); ?>
-
+<style type="text/css">
+    label.error {
+        color: red;
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+    }
+    input.error { border-left: 4px solid #f00; }
+</style>
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_gray page-title-mini">
     <div class="container"><!-- STRART CONTAINER -->
@@ -35,11 +43,11 @@
                         <div class="heading_s1">
                             <h3>Create an Account</h3>
                         </div>
-                        <form method="post" action="<?php echo e(route('user-registration')); ?>">
+                        <form method="post" id="userSignUp" action="<?php echo e(route('user-registration')); ?>">
                             <?php echo e(csrf_field()); ?>
 
                             <div class="form-group">
-                                <input type="text" required="" class="form-control" name="name" placeholder="Enter Your Name">
+                                <input type="text" id="name"  class="form-control" name="name" placeholder="Enter Your Name">
                                  <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -52,7 +60,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" required="" class="form-control" name="email" placeholder="Enter Your Email">
+                                <input type="text" id="email"  class="form-control" name="email" placeholder="Enter Your Email">
                                  <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -65,7 +73,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                              <div class="form-group">
-                                <input type="text" required="" class="form-control" name="mobile" placeholder="Enter Your Mobile">
+                                <input type="text" id="mobile"  class="form-control" name="mobile" placeholder="Enter Your Mobile">
                                  <?php $__errorArgs = ['mobile'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -78,7 +86,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" required="" type="password" name="password" placeholder="Password">
+                                <input class="form-control" id="password"  type="password" name="password" placeholder="Password">
                                   <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -91,7 +99,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" required="" type="password" name="password_confirmation" placeholder="Confirm Password">
+                                <input class="form-control" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password">
                                   <?php $__errorArgs = ['password_confirmation'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -106,7 +114,7 @@ unset($__errorArgs, $__bag); ?>
                             <div class="login_footer form-group">
                                 <div class="chek-form">
                                     <div class="custome-checkbox">
-                                        <input class="form-check-input" type="checkbox" checked="" readonly="" name="checkbox" id="exampleCheckbox2" value="">
+                                        <input class="form-check-input"  type="checkbox" checked="" readonly="" name="checkbox" id="exampleCheckbox2" value="">
                                         <label class="form-check-label" for="exampleCheckbox2"><span>I agree to terms &amp; Policy.</span></label>
                                     </div>
                                 </div>
@@ -137,7 +145,7 @@ unset($__errorArgs, $__bag); ?>
             <div class="col-md-6">
                 <div class="newsletter_form">
                     <form>
-                        <input type="text" required="" class="form-control rounded-0" placeholder="Enter Email Address">
+                        <input type="text"  class="form-control rounded-0" placeholder="Enter Email Address">
                         <button type="submit" class="btn btn-dark rounded-0" name="submit" value="Submit">Subscribe</button>
                     </form>
                 </div>

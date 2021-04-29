@@ -1,8 +1,14 @@
 @extends('user.master')
 @section('main-section')
-
-
-
+<style type="text/css">
+    label.error {
+        color: red;
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+    }
+    input.error { border-left: 4px solid #f00; }
+</style>
 <!-- START MAIN CONTENT -->
 <div class="main_content">
 <!-- START SECTION SHOP -->
@@ -95,20 +101,20 @@
                                         <h3>Billing Address</h3>
                                     </div>
                                     <div class="card-body">
-                                        <form method="POST" action="{{ route('billing_address_update') }}">
+                                        <form method="POST" id="userBillingAddress" action="{{ route('billing_address_update') }}">
                                             {{csrf_field()}}
 
                                         <address>
                                             <div class="form-group mb-0">
-                        <textarea rows="2" class="form-control"  name="address_1" placeholder="Address line 1">{{ Auth::user()->address_1 }}</textarea>
+                        <textarea rows="2" class="form-control"  id="address_1" name="address_1" placeholder="Address line 1">{{ Auth::user()->address_1 }}</textarea>
                     </div>
                                             <br>
                                            <div class="form-group mb-0">
-                        <textarea rows="2" class="form-control"  name="address_line_2" placeholder="Address line 2">{{ Auth::user()->address_line_2 }}</textarea>
+                        <textarea rows="2" class="form-control" id="address_line_2"  name="address_line_2" placeholder="Address line 2">{{ Auth::user()->address_line_2 }}</textarea>
                     </div><br>
                                             <div class="form-group">
                         <div class="custom_select">
-                            <select class="form-control" name="state">
+                            <select class="form-control" id="state" name="state">
                                 <option value="">Select State</option>
                                 <option value="gujarat" @if(Auth::user()->state == "gujarat") selected @endif>Gujarat</option>
                                 <option value="rajasthan"  @if(Auth::user()->state == "rajasthan") selected @endif>Rajasthan</option>
@@ -117,10 +123,10 @@
                         </div>
                     </div><br>
                                             <div class="form-group">
-                        <input class="form-control" required type="text" name="city" value="{{ Auth::user()->city }}"  placeholder="City/Town">
+                        <input class="form-control"  type="text" id="city" name="city" value="{{ Auth::user()->city }}"  placeholder="City/Town">
                     </div> <br>
                         <div class="form-group">
-                        <input class="form-control" required type="text" value="{{ Auth::user()->Zip }}" name="zip"  placeholder="Enter Zip code">
+                        <input class="form-control"  type="text" id="zip" value="{{ Auth::user()->Zip }}" name="zip"  placeholder="Enter Zip code">
                     </div> <br>
                                            
                                      </address>
@@ -136,19 +142,19 @@
                                         <h3>Shipping Address</h3>
                                     </div>
                                     <div class="card-body">
-                            <form action="{{ route('shipping_address_update') }}" method="POST" >
+                            <form action="{{ route('shipping_address_update') }}" id="userShipingAddress" method="POST" >
                                 {{ csrf_field() }}
                                         <address>
                                             <div class="form-group mb-0">
-                        <textarea rows="2" class="form-control" name="shipping_address_1" placeholder="Address line 1"> {{ Auth::user()->shipping_address_1 }} </textarea>
+                        <textarea rows="2" class="form-control" name="shipping_address_1" id="shipping_address_1" placeholder="Address line 1"> {{ Auth::user()->shipping_address_1 }} </textarea>
                     </div>
                                             <br>
                                            <div class="form-group mb-0">
-                        <textarea rows="2" class="form-control" name="shipping_address_2" placeholder="Address line 2"> {{ Auth::user()->shipping_address_2 }} </textarea>
+                        <textarea rows="2" class="form-control" id="shipping_address_2" name="shipping_address_2" placeholder="Address line 2"> {{ Auth::user()->shipping_address_2 }} </textarea>
                     </div><br>
                                             <div class="form-group">
                         <div class="custom_select">
-                            <select class="form-control" name="shipping_state">
+                            <select class="form-control" id="shipping_state" name="shipping_state">
                                 <option value="">Select State</option>
                                <option value="gujarat" @if(Auth::user()->shipping_state == "gujarat") selected @endif>Gujarat</option>
                                 <option value="rajasthan"  @if(Auth::user()->shipping_state == "rajasthan") selected @endif>Rajasthan</option>
@@ -156,10 +162,10 @@
                         </div>
                     </div><br>
                                             <div class="form-group">
-                        <input class="form-control" required type="text" value="{{ Auth::user()->shipping_city }}" name="shipping_city"  placeholder="City/Town">
+                        <input class="form-control" id="shipping_city"  type="text" value="{{ Auth::user()->shipping_city }}" name="shipping_city"  placeholder="City/Town">
                     </div> <br>
                         <div class="form-group">
-                        <input class="form-control" required type="text" name="shipping_zip" value="{{ Auth::user()->shipping_zip }}" placeholder="Enter Zip code">
+                        <input class="form-control" id="shipping_zip"  type="text" name="shipping_zip" value="{{ Auth::user()->shipping_zip }}" placeholder="Enter Zip code">
                     </div> <br>
                                            
                                      </address>
@@ -178,23 +184,23 @@
                             </div>
                             <div class="card-body">
                                
-                                <form method="post" name="enq" action="{{ route('userProfileUpdate') }}">
+                                <form method="post" name="UseraccountDetailsValidation" id="UseraccountDetailsValidation" action="{{ route('userProfileUpdate') }}">
 
                                     {{ csrf_field() }}
 
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label>First Name <span class="required">*</span></label>
-                                            <input required="" value="{{ Auth::user()->name }}" class="form-control" name="name" type="text">
+                                            <label>First Name <span class="">*</span></label>
+                                            <input  value="{{ Auth::user()->name }}" id="name" class="form-control" name="name" type="text">
                                          </div>
                                          <div class="form-group col-md-6">
-                                            <label>Last Name <span class="required">*</span></label>
-                                            <input required="" value="{{ Auth::user()->last_name }}" class="form-control" name="last_name">
+                                            <label>Last Name <span class="">*</span></label>
+                                            <input  value="{{ Auth::user()->last_name }}" id="last_name" class="form-control" name="last_name">
                                         </div>
                                        
                                         <div class="form-group col-md-12">
-                                            <label>Email Address <span class="required">*</span></label>
-                                            <input required="" class="form-control" readonly="" value="{{ Auth::user()->email }}" name="email" type="email">
+                                            <label>Email Address <span class="">*</span></label>
+                                            <input  class="form-control" id="email" value="{{ Auth::user()->email }}" readonly="" name="email" type="email">
                                         </div>
                                        
                                         <div class="col-md-12">
@@ -211,22 +217,22 @@
                             </div>
                             <div class="card-body">
                                
-                                <form method="post" name="enq" action="{{route('updatePassword')}}">
+                                <form method="post" name="enq" id="UserChangePasswordValidation" action="{{route('updatePassword')}}">
 
                                     {{ csrf_field() }}
                                     <div class="row">
                                        
                                         <div class="form-group col-md-12">
-                                            <label>Current Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="old_password" type="password">
+                                            <label>Current Password <span class="">*</span></label>
+                                            <input class="form-control" id="old_password" name="old_password" type="password">
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label>New Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="new_password" type="password">
+                                            <label>New Password <span class="">*</span></label>
+                                            <input class="form-control" id="new_password" name="new_password" type="password">
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label>Confirm Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="confirm_password" type="password">
+                                            <label>Confirm Password <span class="">*</span></label>
+                                            <input class="form-control" id="confirm_password" name="confirm_password" type="password">
                                         </div>
                                         <div class="col-md-12">
                                             <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Change Password</button>
@@ -255,7 +261,7 @@
             <div class="col-md-6">
                 <div class="newsletter_form">
                     <form>
-                        <input type="text" required="" class="form-control rounded-0" placeholder="Enter Email Address">
+                        <input type="text" ="" class="form-control rounded-0" placeholder="Enter Email Address">
                         <button type="submit" class="btn btn-dark rounded-0" name="submit" value="Submit">Subscribe</button>
                     </form>
                 </div>
@@ -292,7 +298,7 @@
                             </div>
                             <form method="post">
                                 <div class="form-group">
-                                    <input name="email" required type="email" class="form-control rounded-0" placeholder="Enter Your Email">
+                                    <input name="email"  type="email" class="form-control rounded-0" placeholder="Enter Your Email">
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-fill-line btn-block text-uppercase rounded-0" title="Subscribe" type="submit">Subscribe</button>

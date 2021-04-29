@@ -29,7 +29,7 @@
         <div class="toggle"><i class="fa fa-user-plus"></i>
         </div>
         <div class="form formLogin">
-            <img src = "{{ url('Common/logo.jpeg') }}" style="width:100%;">
+            <img src = "{{ url('Common/biztria-logo.jpg') }}" style="width:100%;">
             <form method="POST" action="{{ route('adminlogin') }}">
             @csrf
                 <input type="email" name="email" placeholder="Enter Email" />

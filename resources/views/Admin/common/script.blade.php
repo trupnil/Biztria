@@ -21,3 +21,6 @@
     <!-- summernote -->
     <script src="{{url('Eadmin/assets/plugins/summernote/summernote.min.js')}}" ></script>
     <script src="{{url('Eadmin/assets/js/pages/summernote/summernote-data.js')}}" ></script>
+    
+   <!-- Custom Validation  -->
+   <script src="{{url('Eadmin/assets/js/adminformvalidation.js')}}" ></script>

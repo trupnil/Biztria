@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Larastore.ml</title>
+<title>Biztria | Rapid Ecommerce</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="_token" content="<?php echo e(csrf_token()); ?>">
 <?php echo $__env->make('user.common.link', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -253,6 +253,12 @@ function relaodCart(){
 
   }
 </script>
+
+
+<!-- This is for userLogin Validation script  -->
+
+
+
 
 
 </body>
